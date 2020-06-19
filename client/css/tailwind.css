@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+h1 {
+    font-size: 2em;
+}
+
+body {
+    @apply bg-blue-500;
+}
