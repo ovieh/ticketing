@@ -1,4 +1,4 @@
-name: Tests
+name: test-payments
 on:
   pull_request:
 jobs:
@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && npm install && npm run test:ci
+      - run: cd payments && npm install && npm run test:ci
