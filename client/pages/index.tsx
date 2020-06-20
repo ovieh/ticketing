@@ -6,9 +6,6 @@ interface LandingPageProps {
 	tickets: Ticket[];
 }
 
-console.log('Does this show up anywhere in the client');
-
-
 export default function LandingPage({ currentUser, tickets }: LandingPageProps) {
 	const ticketList = tickets.map((ticket) => (
 		<tr key={ticket.id}>
