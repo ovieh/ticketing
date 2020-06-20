@@ -6,7 +6,7 @@ interface LandingPageProps {
 	tickets: Ticket[];
 }
 
-console.log('does this show up anywhere in the client');
+console.log('Does this show up anywhere in the client');
 
 
 export default function LandingPage({ currentUser, tickets }: LandingPageProps) {
