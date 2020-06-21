@@ -31,22 +31,6 @@ spec:
             backend:
               serviceName: client-srv
               servicePort: 3000
-  tls:
-      - hosts:
-          - www.ticketing-prod.xyz
-        secretName: ticketing-tls
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ticketing-tls
-  namespace: blah?
-data:
-  tls.cert: <blah>
-  tls.key: <blah>
-type: kubernetes.io/tls
-
-
 ---
 apiVersion: v1
 kind: Service
