@@ -45,23 +45,25 @@ export const Header: React.FC<Props> = ({ children, currentUser }) => {
 		},
 	];
 	return (
-		<nav className="py-2 px-4 bg-gray-800 flex justify-between items-center">
+		<nav className="py-2 px-4 bg-dark-blue flex justify-between items-center">
 			<div className="text-2xl text-green-500 font-thin">
 				<Link href="/">
 					<a>Tickets!</a>
 				</Link>
 			</div>
 
-			<ul className='flex'>
-				{links.map(({ message, link, type, active }) => (
-					<HeaderLink
-						key={message}
-						link={link}
-						message={message}
-						type={type}
-						active={active}
-					/>
-				))}
+			<ul className="flex">
+				{links
+					.filter(({ active }) => active === true)
+					.map(({ message, link, type, active }) => (
+						<HeaderLink
+							key={message}
+							link={link}
+							message={message}
+							type={type}
+							active={active}
+						/>
+					))}
 				{children}
 			</ul>
 		</nav>
