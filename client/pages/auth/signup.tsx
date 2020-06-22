@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
 import Router from 'next/router';
-import { AuthContainer } from '../../components/AuthContainer';
+import { AuthContainer, AuthTitle } from '../../components/AuthContainer';
 
 export default function signup() {
 	const [email, setEmail] = useState('');
@@ -19,15 +19,19 @@ export default function signup() {
 		await doRequest();
 	};
 
+	const userInfo = {
+		email,
+		password,
+		setEmail,
+		setPassword,
+	};
+
 	return (
 		<AuthContainer
-			email={email}
-			password={password}
 			errors={errors}
 			handleOnSubmit={handleOnSubmit}
-			setEmail={setEmail}
-			setPassword={setPassword}
-			title={"Sign Up"}
+			title={AuthTitle.signUp}
+			userInfo={userInfo}
 		/>
 	);
 }
