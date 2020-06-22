@@ -1,67 +1,65 @@
 import React from 'react';
 import { HeaderLink } from './components/HeaderLink';
-import { HeaderLinks } from '../../types';
+import { HeaderLinks, HeaderType, User } from '../../types';
 import Link from 'next/link';
 
-interface Props {
-	currentUser: {
-		id: string;
-		email: string;
-		iat: number;
-	};
+interface HeaderProps {
+	currentUser: User;
 }
 
-export const Header: React.FC<Props> = ({ children, currentUser }) => {
+export const Header: React.FC<HeaderProps> = ({ children, currentUser }) => {
 	const links: Array<HeaderLinks> = [
 		{
 			message: 'Sign Up',
 			link: '/auth/signup',
-			type: 'active',
+			type: HeaderType.active,
 			active: !currentUser,
 		},
 		{
 			message: 'Sign In',
 			link: '/auth/signin',
-			type: 'active',
+			type: HeaderType.active,
 			active: !currentUser,
 		},
 		{
 			message: 'Sell Tickets',
 			link: '/tickets/new',
-			type: 'active',
+			type: HeaderType.active,
 			active: !!currentUser,
 		},
 		{
 			message: 'My Orders',
 			link: '/orders',
-			type: 'active',
+			type: HeaderType.active,
 			active: !!currentUser,
 		},
 		{
 			message: 'Sign Out',
 			link: '/auth/signout',
-			type: 'active',
+			type: HeaderType.active,
 			active: !!currentUser,
 		},
 	];
 	return (
-		<nav className="py-2 px-4 bg-gray-800 flex justify-between items-center">
+		<nav className="py-2 px-4 bg-dark-blue flex justify-between items-center">
 			<div className="text-2xl text-green-500 font-thin">
 				<Link href="/">
 					<a>Tickets!</a>
 				</Link>
 			</div>
 
-			<ul className='flex'>
-				{links.map(({ message, link, type, active }) => (
-					<HeaderLink
-						key={message}
-						link={link}
-						message={message}
-						type={type}
-						active={active}
-					/>
-				))}
+			<ul className="flex">
+				{links
+					.filter(({ active }) => active == true)
+					.map(({ message, link, type, active }) => (
+						<HeaderLink
+							key={message}
+							link={link}
+							message={message}
+							type={type}
+							active={active}
+						/>
+					))}
 				{children}
 			</ul>
 		</nav>

@@ -7,7 +7,7 @@ interface HeaderLinkProps extends HeaderLinks {}
 
 export const HeaderLink: React.FC<HeaderLinkProps> = ({ type, link, message, active }) => {
 	return (
-		<li className="mr-6">
+		<li className="pl-2">
 			<Link href={link}>
 				<a
 					className={clsx(
