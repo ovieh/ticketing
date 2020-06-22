@@ -1,5 +1,6 @@
 import { Ticket, User } from '../types';
 import Link from 'next/link';
+import Head from 'next/head';
 // TODO: come up with typeo for currentUser
 interface LandingPageProps {
 	currentUser: User;
@@ -21,6 +22,11 @@ export default function LandingPage({ currentUser, tickets }: LandingPageProps) 
 
 	return (
 		<div>
+			<Head>
+				<title>Tickets!</title>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			</Head>
 			<h1>Tickets</h1>
 			<table className="table-fixed">
 				<thead>
