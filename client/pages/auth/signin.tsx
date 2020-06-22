@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
 import Router from 'next/router';
-import { AuthContainer } from '../../components/AuthContainer';
+import { AuthContainer, AuthTitle } from '../../components/AuthContainer';
 
 export default function signin() {
 	const [email, setEmail] = useState('');
@@ -18,17 +18,19 @@ export default function signin() {
 		event.preventDefault();
 		await doRequest();
 	};
+	const userInfo = {
+		email,
+		password,
+		setEmail,
+		setPassword,
+	};
 
 	return (
 		<AuthContainer
-			email={email}
-			password={password}
 			errors={errors}
 			handleOnSubmit={handleOnSubmit}
-			setEmail={setEmail}
-			setPassword={setPassword}
-			title={"Sign In"}
-
+			title={AuthTitle.signIn}
+			userInfo={userInfo}
 		/>
 	);
 }
