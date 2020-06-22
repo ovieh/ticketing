@@ -1,6 +1,8 @@
 import { Ticket, User } from '../types';
 import Link from 'next/link';
 import Head from 'next/head';
+import { Card } from '../components/Card';
+import { Button, ButtonType } from '../components/Button';
 // TODO: come up with typeo for currentUser
 interface LandingPageProps {
 	currentUser: User;
@@ -8,16 +10,12 @@ interface LandingPageProps {
 }
 
 export default function LandingPage({ currentUser, tickets }: LandingPageProps) {
-	const ticketList = tickets.map((ticket) => (
-		<tr key={ticket.id}>
-			<td className="border px-4 py-2">{ticket.title}</td>
-			<td className="border px-4 py-2">{ticket.price}</td>
-			<td className="border px-4 py-2">
+	const Tickets = tickets.map((ticket) => (
+			<Card key={ticket.id} ticket={ticket}>
 				<Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
-					<a>View</a>
+					<a className="text-green-500 text-xl hover:text-green-300">View</a>
 				</Link>
-			</td>
-		</tr>
+			</Card>
 	));
 
 	return (
@@ -28,16 +26,7 @@ export default function LandingPage({ currentUser, tickets }: LandingPageProps) 
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<h1>Tickets</h1>
-			<table className="table-fixed">
-				<thead>
-					<tr>
-						<th className="border w-1/4 px-4 py-2">Title</th>
-						<th className="border w-1/4 px-4 py-2">Price</th>
-						<th className="border w-1/4 px-4 py-2">Link</th>
-					</tr>
-				</thead>
-				<tbody>{ticketList}</tbody>
-			</table>
+			<div className="flex flex-wrap justify-between">{Tickets}</div>
 		</div>
 	);
 }

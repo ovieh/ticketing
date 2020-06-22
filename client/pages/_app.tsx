@@ -8,7 +8,7 @@ export default function AppComponent({ Component, pageProps, currentUser }) {
 	return (
 		<>
 			<Header currentUser={currentUser}></Header>
-			<div className="container mx-auto p-12">
+			<div className="container mx-auto px-12">
 				<Component currentUser={currentUser} {...pageProps} />
 			</div>
 		</>
