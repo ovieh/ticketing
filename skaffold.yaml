@@ -27,6 +27,10 @@ build:
             dest: .
           - src: '**/*.ts'
             dest: .
+          - src: '**/*.js'
+            dest: .
+          - src: 'css/**/*.css'
+            dest: .
     - image: ovieh/tickets
       context: tickets
       docker:
