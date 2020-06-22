@@ -1,15 +1,20 @@
 import React from 'react';
 
-interface Props {
-	type: 'button' | 'submit' | 'reset';
+export enum ButtonType {
+	button = 'button',
+	submit = 'submit',
+	reset = 'reset',
+  }
+interface ButtonProps {
+	type: ButtonType;
 	message: string;
 	onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const Button: React.FC<Props> = ({ type, message, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ type, message, onClick }) => {
 	return (
 		<button
-			className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+			className="bg-dark-blue hover:bg-blue-900 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-green-500 border-2"
 			type={type}
 			onClick={onClick}
 		>
