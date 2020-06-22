@@ -1,5 +1,5 @@
 import { Ticket, Order } from '../../types';
-import { Button } from '../../components/Button';
+import { Button, ButtonType } from '../../components/Button';
 import { useRequest } from '../../hooks/use-request';
 import { Errors } from '../../components/Errors';
 import Router from 'next/router';
@@ -24,7 +24,7 @@ export const TicketShow = ({ ticket }: TicketShowProps) => {
 			<h1>{ticket.title}</h1>
 			<h4>Price: {ticket.price}</h4>
 			<Errors errors={errors} />
-			<Button onClick={() => doRequest()} message="Purchase" type="button" />
+			<Button onClick={() => doRequest()} message="Purchase" type={ButtonType.button} />
 		</div>
 	);
 };

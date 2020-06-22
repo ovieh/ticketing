@@ -1,4 +1,4 @@
-import { Button } from '../../components/Button';
+import { Button, ButtonType } from '../../components/Button';
 import { TextField } from '../../components/TextField';
 import { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
@@ -64,7 +64,7 @@ const NewTicket = () => {
 						{message}
 					</p>
 				))}
-				<Button message="Submit" type="submit" />
+				<Button message="Submit" type={ButtonType.submit} />
 			</form>
 		</div>
 	);
