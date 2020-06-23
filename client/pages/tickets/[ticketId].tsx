@@ -3,6 +3,7 @@ import { Button, ButtonType } from '../../components/Button';
 import { useRequest } from '../../hooks/use-request';
 import { Errors } from '../../components/Errors';
 import Router from 'next/router';
+import { Card } from '../../components/Card';
 
 interface TicketShowProps {
 	ticket: Ticket;
@@ -13,18 +14,16 @@ export const TicketShow = ({ ticket }: TicketShowProps) => {
 		url: '/api/orders',
 		method: 'post',
 		body: { ticketId: ticket.id },
-		// onSuccess: () => Router.push('/'),
 		onSuccess: (order: Order) => {
-			Router.push('/orders/[orderId]', `/orders/${order.id}`)
+			Router.push('/orders/[orderId]', `/orders/${order.id}`);
 		},
 	});
 
 	return (
-		<div>
-			<h1>{ticket.title}</h1>
-			<h4>Price: {ticket.price}</h4>
-			<Errors errors={errors} />
-			<Button onClick={() => doRequest()} message="Purchase" type={ButtonType.button} />
+		<div className="flex justify-center">
+			<Card ticket={ticket}>
+				<Button onClick={() => doRequest()} message="Purchase" type={ButtonType.button} />
+			</Card>
 		</div>
 	);
 };

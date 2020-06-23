@@ -1,15 +1,12 @@
 import { Order } from '../../types';
+import { Card } from '../../components/Card';
 
 const OrderIndex = ({ orders }) => {
 	return (
-		<div className='mt-1'>
-			<ul className='list-none'>
-				{orders.map((order: Order) => (
-					<li key={order.id}>
-						{order.ticket.title} - {order.status}
-					</li>
-				))}
-			</ul>
+		<div className="flex flex-wrap justify-around mt-1">
+			{orders.map((order: Order) => (
+				<Card key={order.id} ticket={order.ticket} />
+			))}
 		</div>
 	);
 };
