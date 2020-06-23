@@ -21,14 +21,19 @@ router.post(
     body('price')
       .isFloat({ gt: 0 })
       .withMessage('Price must be greater than zero'),
+    body('date')
+      .not()
+      .isEmpty()
+      .withMessage('Performnace date must be provided')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { title, price } = req.body;
+    const { title, price, date } = req.body;
 
     const ticket = Ticket.build({
       title,
       price,
+      date,
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       userId: req.currentUser!.id,
     });
@@ -38,6 +43,7 @@ router.post(
       id: ticket.id,
       version: ticket.version,
       title: ticket.title,
+      date: ticket.date,
       price: ticket.price,
       userId: ticket.userId
     });

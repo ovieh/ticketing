@@ -10,6 +10,7 @@ it('returns 404 if ticket is not found', async () => {
 it('returns the ticket if ticket is found', async () => {
   const title = 'concert';
   const price = 20;
+  const date = new Date();
 
   const response = await request(app)
     .post('/api/tickets')
@@ -17,6 +18,7 @@ it('returns the ticket if ticket is found', async () => {
     .send({
       title,
       price,
+      date,
     })
     .expect(201);
 
@@ -28,4 +30,6 @@ it('returns the ticket if ticket is found', async () => {
 
   expect(ticketResponse.body.title).toEqual(title);
   expect(ticketResponse.body.price).toEqual(price);
+  expect(ticketResponse.body.date).toEqual(date.toISOString());
+
 });
