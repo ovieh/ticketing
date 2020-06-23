@@ -10,7 +10,7 @@ it('returns a 404 if the provided id does ont exist', async () => {
   await request(app)
     .put(`/api/tickets/${id}`)
     .set('Cookie', global.signin())
-    .send({ title: 'concert', price: 5 })
+    .send({ title: 'concert', price: 5, date: new Date() })
     .expect(404);
 });
 
@@ -19,7 +19,7 @@ it('returns a 401 if the user is not authenticated', async () => {
 
   await request(app)
     .put(`/api/tickets/${id}`)
-    .send({ title: 'concert', price: 5 })
+    .send({ title: 'concert', price: 5, date: new Date() })
     .expect(401);
 });
 
@@ -27,7 +27,7 @@ it('returns a 401 if the user does not own the ticket', async () => {
   const response = await request(app)
     .post('/api/tickets')
     .set('Cookie', global.signin())
-    .send({ title: 'concert', price: 5 });
+    .send({ title: 'concert', price: 5, date: new Date() });
 
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
@@ -64,12 +64,15 @@ it('returns a 400 if the user provies an invalid title or price', async () => {
     .expect(400);
 });
 
-it('can update the price and title of a ticket', async () => {
+it('can update the price, title, and date of a ticket', async () => {
   const cookie = global.signin();
+  const date = new Date();
   const response = await request(app)
     .post('/api/tickets')
     .set('Cookie', cookie)
-    .send({ title: 'concert', price: 5 });
+    .send({ title: 'concert', price: 5, date });
+
+  const newDate = '2020-06-24T21:05:06.835Z';
 
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
@@ -77,15 +80,17 @@ it('can update the price and title of a ticket', async () => {
     .send({
       price: 1000,
       title: 'Real good title',
+      date: newDate,
     })
     .expect(200);
 
   const ticketResponse = await request(app)
     .get(`/api/tickets/${response.body.id}`)
     .send();
-
+ 
   expect(ticketResponse.body.title).toEqual('Real good title');
   expect(ticketResponse.body.price).toEqual(1000);
+  expect(ticketResponse.body.date).toEqual(newDate);
 });
 
 it('publishes an event', async () => {
@@ -93,7 +98,7 @@ it('publishes an event', async () => {
   const response = await request(app)
     .post('/api/tickets')
     .set('Cookie', cookie)
-    .send({ title: 'concert', price: 5 });
+    .send({ title: 'concert', price: 5, date: new Date() });
 
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
@@ -101,6 +106,7 @@ it('publishes an event', async () => {
     .send({
       price: 1000,
       title: 'Real good title',
+      date: new Date()
     })
     .expect(200);
 
@@ -117,7 +123,7 @@ it('throws error when user tries to reserved previously reserved ticket', async 
 
   const ticket = await Ticket.findById(response.body.id);
 
-  ticket?.set({ orderId: mongoose.Types.ObjectId().toHexString()});
+  ticket?.set({ orderId: mongoose.Types.ObjectId().toHexString() });
   await ticket?.save();
 
   await request(app)

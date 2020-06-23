@@ -41,6 +41,7 @@ router.put(
     ticket.set({
       title: req.body.title,
       price: req.body.price,
+      date: req.body.date,
     });
 
     await ticket.save();
@@ -50,6 +51,7 @@ router.put(
       version: ticket.version,
       title: ticket.title,
       price: ticket.price,
+      date: ticket.date,
       userId: ticket.userId,
     });
 
