@@ -8,7 +8,7 @@ const start = async () => {
   console.log('Starting up 🚀');
 
   if (!process.env.JWT_KEY) {
-    throw new Error('JWT must be defined!');
+    throw new Error('JWT must be defined!!!');
   }
 
   if (!process.env.NATS_URL) {
