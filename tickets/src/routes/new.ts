@@ -1,8 +1,5 @@
 import express, { Request, Response } from 'express';
-import {
-  requireAuth,
-  validateRequest,
-} from '@ojticketing/common';
+import { requireAuth, validateRequest } from '@ojticketing/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
@@ -10,25 +7,33 @@ import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
+function dateIsValid(date: Date) {
+  const newDate = new Date(date);
+  return newDate.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0);
+}
+
 router.post(
   '/api/tickets',
   requireAuth,
   [
-    body('title')
-      .not()
-      .isEmpty()
-      .withMessage('Title is required'),
+    body('title').not().isEmpty().withMessage('Title is required'),
     body('price')
       .isFloat({ gt: 0 })
       .withMessage('Price must be greater than zero'),
+    body('date')
+      .not()
+      .isEmpty()
+      .custom((date: Date) => !dateIsValid(date))
+      .withMessage('Performance date must be valid'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { title, price } = req.body;
+    const { title, price, date } = req.body;
 
     const ticket = Ticket.build({
       title,
       price,
+      date,
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       userId: req.currentUser!.id,
     });
@@ -38,8 +43,9 @@ router.post(
       id: ticket.id,
       version: ticket.version,
       title: ticket.title,
+      date: ticket.date,
       price: ticket.price,
-      userId: ticket.userId
+      userId: ticket.userId,
     });
 
     res.status(201).send(ticket);

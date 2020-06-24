@@ -1,4 +1,6 @@
 import '../css/tailwind.css';
+import "react-datepicker/dist/react-datepicker.css";
+
 import { AppProps, AppContext } from 'next/app';
 import { Header } from '../components/Header/Header';
 import buildClient from '../api/build-client';
