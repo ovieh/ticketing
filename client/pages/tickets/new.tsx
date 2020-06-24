@@ -73,11 +73,6 @@ const NewTicket = () => {
 						error={errors.filter(({ field }) => field === 'date')[0]}
 					/>
 				</div>
-				{/* {errors.map(({ message }) => (
-					<p className="text-red-500 text-xs italic" key={`error-${message}`}>
-						{message}
-					</p>
-				))} */}
 				<Errors errors={errors} />
 				<Button message="Submit" type={ButtonType.submit} />
 			</form>
