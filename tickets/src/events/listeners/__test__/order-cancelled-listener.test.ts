@@ -13,6 +13,7 @@ const setup = async () => {
     title: 'concert',
     price: 20,
     userId: mongoose.Types.ObjectId().toHexString(),
+    date: new Date(),
   });
   ticket.set({ orderId: mongoose.Types.ObjectId().toHexString() });
 
