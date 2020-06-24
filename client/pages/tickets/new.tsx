@@ -4,16 +4,17 @@ import { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
 import Router from 'next/router';
 import { Errors } from '../../components/Errors';
+import Datepicker from 'react-datepicker';
 
 const NewTicket = () => {
 	const [title, setTitle] = useState('');
 	const [price, setPrice] = useState('');
-	const [date, setDate] = useState('');
+	const [startDate, setStartDate] = useState(new Date());
 
 	const [doRequest, errors] = useRequest({
 		url: '/api/tickets',
 		method: 'post',
-		body: { title, price, date },
+		body: { title, price, date: startDate },
 		onSuccess: () => Router.push('/'),
 	});
 
@@ -62,15 +63,25 @@ const NewTicket = () => {
 					/>
 				</div>
 				<div className="mb-3">
-					<TextField
-						name="date"
-						message="Performance Date"
-						type="date"
-						value={date}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
-							setDate(e.target.value)
+					<label
+						htmlFor="Datepicker"
+						className="block text-gray-700 text-sm font-bold mb-2"
+					>
+						Performance Date
+					</label>
+					<Datepicker
+						selected={startDate}
+						onChange={(date: Date) => setStartDate(date)}
+						showTimeSelect
+						timeFormat="HH:mm"
+						timeIntervals={15}
+						timeCaption="time"
+						dateFormat="MMMM d, yyyy h:mm aa"
+						// minDate={new Date()}
+						// style={{ width: '100%' }}
+						customInput={
+							<input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 						}
-						error={errors.filter(({ field }) => field === 'date')[0]}
 					/>
 				</div>
 				<Errors errors={errors} />

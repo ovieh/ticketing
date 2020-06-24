@@ -1,8 +1,5 @@
 import express, { Request, Response } from 'express';
-import {
-  requireAuth,
-  validateRequest,
-} from '@ojticketing/common';
+import { requireAuth, validateRequest } from '@ojticketing/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
@@ -10,21 +7,24 @@ import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
+function dateIsValid(date: Date) {
+  const newDate = new Date(date);
+  return newDate.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0);
+}
+
 router.post(
   '/api/tickets',
   requireAuth,
   [
-    body('title')
-      .not()
-      .isEmpty()
-      .withMessage('Title is required'),
+    body('title').not().isEmpty().withMessage('Title is required'),
     body('price')
       .isFloat({ gt: 0 })
       .withMessage('Price must be greater than zero'),
     body('date')
       .not()
       .isEmpty()
-      .withMessage('Performnace date must be provided')
+      .custom((date: Date) => !dateIsValid(date))
+      .withMessage('Performance date must be valid'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -45,7 +45,7 @@ router.post(
       title: ticket.title,
       date: ticket.date,
       price: ticket.price,
-      userId: ticket.userId
+      userId: ticket.userId,
     });
 
     res.status(201).send(ticket);
