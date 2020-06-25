@@ -20,12 +20,12 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@types/cookie-session": "^2.0.40",
+    "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.6",
     "@types/jsonwebtoken": "^8.5.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
-    "express-validator": "^6.5.0",
+    "express-validator": "^6.6.0",
     "jsonwebtoken": "^8.5.1",
     "node-nats-streaming": "^0.3.2"
   }
