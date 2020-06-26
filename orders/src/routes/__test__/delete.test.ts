@@ -25,6 +25,7 @@ it('returns 404 if the user tries to delete another users orders', async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date(),
   });
   await ticket.save();
 
@@ -51,6 +52,7 @@ it('marks an order as cancelled', async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date(),
   });
   await ticket.save();
 
@@ -83,6 +85,7 @@ it('emits an order cancelled event', async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date(),
   });
   await ticket.save();
 

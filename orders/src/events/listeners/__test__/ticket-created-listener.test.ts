@@ -14,6 +14,7 @@ const setup = async () => {
     id: new mongoose.Types.ObjectId().toHexString(),
     price: 20,
     title: 'Billy Joel',
+    date: new Date(),
     version: 0,
     userId: new mongoose.Types.ObjectId().toHexString(),
   };
@@ -37,6 +38,8 @@ it('creates and saves a ticket', async () => {
   expect(ticket).toBeDefined();
   expect(ticket!.title).toEqual(data.title);
   expect(ticket!.price).toEqual(data.price);
+  expect(ticket!.date).toEqual(data.date);
+
 });
 
 it('acks the message', async () => {
