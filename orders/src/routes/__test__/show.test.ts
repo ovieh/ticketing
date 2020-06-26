@@ -15,6 +15,7 @@ it('fetches the order', async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date(),
   });
   await ticket.save();
 
@@ -53,6 +54,7 @@ it('returns 404 if the user tries to fetch another users orders', async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
+    date: new Date(),
   });
   await ticket.save();
 
