@@ -10,5 +10,6 @@ export interface OrderCompletedEvent {
             price: number;
             date: Date;
         }
+        email: string;
     }
 }
