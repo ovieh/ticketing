@@ -13,6 +13,7 @@ export interface OrderCreatedEvent {
             id: string;
             price: number;
         }
+        userEmail: string;
     }
 
 }
