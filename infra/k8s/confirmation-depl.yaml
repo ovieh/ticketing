@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confirmation-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: confirmation     
+  template:
+    metadata:
+      labels:
+        app: confirmation
+    spec:
+      containers:
+        - name: confirmation
+          image: ovieh/confirmation
+          env:
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                  secretKeyRef:
+                    name: sendgrid-secret
+                    key: SENDGRID_API_KEY
+            - name: REDIS_HOST
+              value: confirmation-redis-srv
