@@ -8,6 +8,7 @@ interface OrderAttrs {
   status: OrderStatus;
   expiresAt: Date;
   ticket: TicketDoc;
+  userEmail?: string;
 }
 interface OrderDoc extends mongoose.Document {
   userId: string;
@@ -15,6 +16,7 @@ interface OrderDoc extends mongoose.Document {
   expiresAt: Date;
   ticket: TicketDoc;
   version: number;
+  userEmail: string;
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -40,6 +42,10 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Ticket',
     },
+    userEmail: {
+      type: String,
+      required: false,
+    }
   },
   {
     toJSON: {

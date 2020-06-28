@@ -40,7 +40,8 @@ const start = async () => {
     new TicketedUpdatedListener(natsWrapper.client).listen();
     new ExpirationCompleteListener(natsWrapper.client).listen();
     new PaymentCreatedListener(natsWrapper.client).listen();
-  
+    console.log("current user!!!!!");
+    
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
