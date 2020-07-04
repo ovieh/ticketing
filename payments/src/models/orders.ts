@@ -8,12 +8,14 @@ interface OrdersAttrs {
   version: number;
   status: OrderStatus;
   price: number;
+  userEmail?: string;
 }
 
 interface OrderDoc extends mongoose.Document {
   version: number;
   userId: string;
   price: number;
+  userEmail?: string;
   status: OrderStatus;
 }
 
@@ -35,6 +37,10 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userEmail: {
+      type: String,
+      required: false,
+    }
   },
   {
     toJSON: {

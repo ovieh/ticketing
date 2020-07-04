@@ -1,5 +1,5 @@
 {
-  "name": "orders",
+  "name": "confirmation",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
@@ -17,6 +17,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
@@ -26,28 +29,21 @@
   "license": "ISC",
   "dependencies": {
     "@ojticketing/common": "^1.0.32",
-    "@types/cookie-session": "^2.0.41",
-    "@types/express": "^4.17.6",
-    "@types/jsonwebtoken": "^8.5.0",
-    "@types/mongoose": "^5.7.28",
-    "@types/supertest": "^2.0.9",
-    "cookie-session": "^1.4.0",
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "express-validator": "^6.6.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.20",
-    "mongoose-update-if-current": "^1.4.0",
-    "ts-node-dev": "^1.0.0-pre.49",
-    "typescript": "^3.9.5"
+    "@sendgrid/mail": "^7.2.1",
+    "@types/supertest": "^2.0.10",
+    "bull": "^3.15.0",
+    "dotenv": "^8.2.0",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.50",
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
+    "@types/bull": "^3.14.0",
     "@types/jest": "^26.0.3",
-    "@typescript-eslint/eslint-plugin": "^3.4.0",
-    "@typescript-eslint/parser": "^3.4.0",
-    "eslint": "^7.3.1",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "eslint": "^7.4.0",
     "jest": "^26.1.0",
-    "mongodb-memory-server": "^6.6.1",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2",
     "ts-jest": "^26.1.1"

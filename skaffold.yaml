@@ -63,3 +63,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ovieh/confirmation
+      context: confirmation
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

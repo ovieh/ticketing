@@ -28,7 +28,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ojticketing/common": "^1.0.28",
+    "@ojticketing/common": "^1.0.32",
     "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.6",
     "@types/jsonwebtoken": "^8.5.0",

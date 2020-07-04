@@ -55,6 +55,7 @@ router.post(
       status: OrderStatus.Created,
       expiresAt: expiration,
       ticket,
+      userEmail: req.currentUser!.email
     });
     await order.save();
 
@@ -68,7 +69,8 @@ router.post(
       ticket: {
         id: ticket.id,
         price: ticket.price
-      }
+      },
+      userEmail: req.currentUser!.email,
     });
 
 
