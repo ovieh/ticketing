@@ -1,15 +1,22 @@
 import '../css/tailwind.css';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { AppProps, AppContext } from 'next/app';
 import { Header } from '../components/Header/Header';
 import buildClient from '../api/build-client';
 import { GetServerSidePropsContext } from 'next';
+import Head from 'next/head';
 
 export default function AppComponent({ Component, pageProps, currentUser }) {
 	return (
 		<>
-			<Header currentUser={currentUser}></Header>
+			<Head>
+				<title>Tickets!</title>
+				<meta charSet="utf-8" />
+				<meta name="description" content="Place to buy and sell tickets" />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			</Head>
+			<Header currentUser={currentUser} />
 			<div className="container mx-auto px-12">
 				<Component currentUser={currentUser} {...pageProps} />
 			</div>
