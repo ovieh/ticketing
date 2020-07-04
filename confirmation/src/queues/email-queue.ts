@@ -1,26 +1,20 @@
 import Queue from 'bull';
 import SendGrid from '../sendgrid';
-interface Payload {
-  title: string;
-  date: Date;
-  price: number;
-  email: string;
-}
+import { TicketPayload } from '../types';
 
-console.log(process.env.REDIS_HOST);
-
-const emailQueue = new Queue<Payload>('order:complete', {
+const emailQueue = new Queue<TicketPayload>('order:complete', {
   redis: {
     host: process.env.REDIS_HOST,
   },
 });
+const url =
+  process.env.NODE_ENV === 'development'
+    ? 'https://ticketing.dev/orders'
+    : 'https://www.ticketing-prod.xyz/orders';
+
 emailQueue.process(async (job) => {
   try {
-    console.log(job.data);
-    const sendGrid = new SendGrid(
-      job.data.email,
-      'Order Successfully Placed'
-    );
+    const sendGrid = new SendGrid('Order Successfully Placed', job.data, url);
 
     sendGrid.sendMail();
   } catch (error) {
