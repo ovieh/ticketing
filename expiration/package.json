@@ -22,20 +22,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ojticketing/common": "^1.0.28",
+    "@ojticketing/common": "^1.0.32",
     "@types/bull": "^3.14.0",
-    "bull": "^3.14.0",
+    "bull": "^3.16.0",
     "jsonwebtoken": "^8.5.1",
-    "ts-node-dev": "^1.0.0-pre.49",
-    "typescript": "^3.9.5"
+    "ts-node-dev": "^1.0.0-pre.52",
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.3",
-    "@typescript-eslint/eslint-plugin": "^3.4.0",
-    "@typescript-eslint/parser": "^3.4.0",
-    "eslint": "^7.3.1",
+    "@types/jest": "^26.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "ts-jest": "^26.1.1"
+    "ts-jest": "^26.1.3"
   }
 }
