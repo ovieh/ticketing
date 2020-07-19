@@ -29,6 +29,7 @@ const setup = async () => {
       id: ticket.id,
       price: ticket.price,
     },
+    userEmail: 'real@testgmail.com',
   };
   // crate a fake message object
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -72,5 +73,4 @@ it('publishes a ticket updated event', async () => {
   );
 
   expect(ticketUpdatedData.orderId).toEqual(data.id);
-
 });
