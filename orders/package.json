@@ -38,13 +38,13 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
     "mongoose-update-if-current": "^1.4.0",
-    "ts-node-dev": "^1.0.0-pre.52",
+    "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.5",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
+    "@types/jest": "^26.0.7",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "mongodb-memory-server": "^6.6.1",
