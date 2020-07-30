@@ -30,6 +30,7 @@ And inside payment service k8s deployment config file (payments-depl.yaml):
 And for the confirmation service: 
 kubectl create secret generic sendgrid-secret --from-literal SENDGRID_API_KEY=[YOUR_SENDGRID_API_KEY]
 
+And inside confirmation service k8s deployment config file (confirmation-depl.yaml):
 
 - name: SENDGRID_API_KEY
   valueFrom:
