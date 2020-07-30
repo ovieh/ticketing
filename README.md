@@ -17,7 +17,7 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 ```
 e.g. To create a secret token in k8s cluster that is used for stripe payment service:
 
-kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=[YOU_STRIPE_SECRET_KEY]
+kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=[YOUR_STRIPE_SECRET_KEY]
 
 And inside payment service k8s deployment config file (payments-depl.yaml):
 
@@ -26,6 +26,16 @@ And inside payment service k8s deployment config file (payments-depl.yaml):
     secretKeyRef:
       name: stripe-secret
       key: STRIPE_KEY
+      
+And for the confirmation service: 
+kubectl create secret generic sendgrid-secret --from-literal SENDGRID_API_KEY=[YOUR_SENDGRID_API_KEY]
+
+
+- name: SENDGRID_API_KEY
+  valueFrom:
+    secretKeyRef:
+      name: sendgrid-secret
+      key: SENDGRID_API_KEY
       
 ```
 
