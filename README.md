@@ -200,3 +200,15 @@ All the commonly used classes, interfaces and middlewares, etc. are extracted in
 - POST /api/payments   
   { token: string, orderId: string}   
   `Create new charge/payment`
+  
+### confirmation service
+
+- BULLJS
+  Use `Bull.js` to manage job queues
+  
+- Redis   
+  Use `Redis` to store list of jobs
+
+- SENDGRID
+  Email delivery service, used to send emails confirming purchase
+
