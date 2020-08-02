@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Card } from '../components/Card';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
-import dbConnect from '../utils/dbConnect';
 
 interface LandingPageProps {
 	currentUser: User;
