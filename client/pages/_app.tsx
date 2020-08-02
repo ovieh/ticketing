@@ -1,13 +1,10 @@
 import '../css/tailwind.css';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import { AppProps, AppContext } from 'next/app';
 import { Header } from '../components/Header/Header';
 import buildClient from '../api/build-client';
-import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 
-export default function AppComponent({ Component, pageProps, currentUser }) {
+export default function AppComponent({ currentUser, pageProps, Component})  {
 	return (
 		<>
 			<Head>

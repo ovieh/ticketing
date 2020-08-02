@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ children, currentUser }) => {
 	];
 	return (
 		<nav className="py-2 px-4 bg-dark-blue flex justify-between items-center">
-			<div className="text-2xl text-green-500 font-thin">
+			<div className="text-2xl text-green-500 font-semibold">
 				<Link href="/">
 					<a>Tickets!</a>
 				</Link>

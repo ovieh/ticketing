@@ -1,5 +1,5 @@
 # First stage: compile things.
-FROM node:12.18.1-alpine AS build
+FROM node:12.18.3-alpine AS build
 WORKDIR /usr/src/app
 
 # (Install OS dependencies; include -dev packages if needed.)
