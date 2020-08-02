@@ -1,4 +1,4 @@
-import { Ticket, Order } from '../../types';
+import { Ticket, Order, User } from '../../types';
 import { Button, ButtonType } from '../../components/Button';
 import { useRequest } from '../../hooks/use-request';
 import { Errors } from '../../components/Errors';
@@ -7,9 +7,11 @@ import { Card } from '../../components/Card';
 
 interface TicketShowProps {
 	ticket: Ticket;
+	currentUser: User;
 }
 
-export const TicketShow = ({ ticket }: TicketShowProps) => {
+export const TicketShow = ({ ticket, currentUser }: TicketShowProps) => {
+
 	const [doRequest, errors] = useRequest({
 		url: '/api/orders',
 		method: 'post',
@@ -22,7 +24,11 @@ export const TicketShow = ({ ticket }: TicketShowProps) => {
 	return (
 		<div className="flex justify-center">
 			<Card ticket={ticket}>
-				<Button onClick={() => doRequest()} message="Purchase" type={ButtonType.button} />
+				<Button
+					onClick={currentUser ? () => doRequest() : () => Router.push('/auth/signin')}
+					message="Purchase"
+					type={ButtonType.button}
+				/>
 			</Card>
 		</div>
 	);

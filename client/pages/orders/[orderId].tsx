@@ -4,6 +4,9 @@ import { useRequest } from '../../hooks/use-request';
 import { Errors } from '../../components/Errors';
 import Router from 'next/router';
 import { Order, User } from '../../types';
+import { Alert } from '../../components/Alert';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
 interface OrderShowProps {
 	order: Order;
@@ -36,7 +39,11 @@ const OrderShow = ({ order, currentUser: { email } }: OrderShowProps) => {
 	}
 
 	return (
-		<div className="flex">
+		<div className="flex flex-col justify-center">
+			<Alert
+				message="To test, use mock values 4242 4242 4242 4242 as the card number and 111 as the
+					security code"
+			/>
 			<div>Time left to pay: {timeleft} seconds</div>
 			<div>
 				<StripeCheckout
@@ -51,11 +58,13 @@ const OrderShow = ({ order, currentUser: { email } }: OrderShowProps) => {
 	);
 };
 
-OrderShow.getInitialProps = async (context, client) => {
-	const { orderId } = context.query;
-	const { data } = await client.get(`/api/orders/${orderId}`);
+export const getServerSideProps: GetServerSideProps = async ({ req, params, ...rest }) => {
+	const { orderId } = params;
 
-	return { order: data };
+	const { data } = await axios.get(`http://orders-srv:3000/api/orders/${orderId}`, {
+		headers: req.headers,
+	});
+	return { props: { order: data } };
 };
 
 export default OrderShow;
