@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeaderLink } from './components/HeaderLink';
 import { HeaderLinks, HeaderType, User } from '../../types';
 import Link from 'next/link';
