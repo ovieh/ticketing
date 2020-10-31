@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import * as React from 'react';
 import { TextField } from './TextField';
 import { Errors } from './Errors';
 import { Button, ButtonType } from './Button';

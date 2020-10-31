@@ -1,13 +1,12 @@
 module.exports = {
-	purge: {
-		enabled: process.env.NODE_ENV === 'production',
-		content: ['./**/*.html', './**/*.tsx'],
+	future: {
+		purgeLayersByDefault: true,
 	},
 	theme: {
 		extend: {
 			colors: {
 				smoke: '#3b3b38',
-				"dark-blue": '#141821'
+				'dark-blue': '#141821',
 			},
 		},
 		container: {
